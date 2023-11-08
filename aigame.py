@@ -1,33 +1,13 @@
-import openai
+from openai_api import OpenAIApi
 
-GPT_3_5_TURBO = "gpt-3.5-turbo"
-GPT_4 = "gpt-4"
 USE_CACHE = True
-
-with open('openai_api_key.txt', 'r') as f:
-    openai.api_key = f.read()
 
 with open("system_instructions.txt", 'r') as f:
     system_instructions = f.read()
+prompt = "I'm making a metroid game. The first level is a return to Tallon 4 with Samus's ship landing and the adventure starting anew."
 
-messages = [
-    {"role": "system", "content": system_instructions},
-    {"role": "user", "content": "I'm making a metroid game. The first level is a return to Tallon 4 with Samus's ship landing and the adventure starting anew."}
-]
-
-response_string = None
-if USE_CACHE:
-    with open("cached_response.txt") as f:
-        response_string = f.read()
-
-if response_string is None or response_string == "":
-    response = openai.ChatCompletion.create(
-        model=GPT_3_5_TURBO,
-        messages=messages
-    )
-    with open("cached_response.txt", 'w') as f:
-        f.write(response.choices[0]["message"]["content"])
-    response_string = response.choices[0]["message"]["content"]
+api_obj = OpenAIApi()
+response_string = api_obj.chat(system_instructions, prompt, use_cache=USE_CACHE)
 
 try:
     response_text = response_string.split("\n")
