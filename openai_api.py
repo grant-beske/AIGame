@@ -10,9 +10,9 @@ class OpenAIApi:
     with open("openai_api_key.txt", 'r') as f:
       openai.api_key = f.read()
   
-  def chat(self, system_instructions, prompt, use_cache=False, use_gpt4=False):
+  def chat(self, system_instructions, prompt, skip_cache=False, use_gpt4=False):
     response_string = None
-    if use_cache: response_string = self.read_from_cache()
+    if not skip_cache: response_string = self.read_from_cache()
     if response_string: return response_string
     response = openai.ChatCompletion.create(
         model=GPT_4 if use_gpt4 else GPT_3_5_TURBO,

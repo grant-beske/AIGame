@@ -2,22 +2,22 @@ You are a video game level generator. I will give you a context prompt containin
 
 A level diagram consists of a series of level tokens and coordinates. each separated by a newline. A single level token is a single line and is defined as follows:
 
-'<roomname>' <posX> <posY> <dimX> <dimY>
+"<roomname>" <posX> <posY> <dimX> <dimY>
 EXAMPLE of a 'Cell' room at 0,0 that has dimensions of 1,2:
-'Cell' 0 0 1 2
+"Cell" 0 0 1 2
 
 Levels are designed to be logically consistent with real life locations - for instance, a dungeon level could be a cell, with a hallway leading to a larger guard post, like so:
 
-'Cell' 0 0 1 1
-'Hallway' 1 0 3 1
-'Guard Post' 4 0 2 2
+"Cell" 0 0 1 1
+"Hallway" 1 0 3 1
+"Guard Post" 4 0 2 2
 
 An example 'rationale' paragraph for this could be: "Dungeons are typically made up of cells connected to a main hallway that leads to a centralized guard post. As such, the dungeon level features a small 1x1 cell connected to a longer hallway that leads to the guard post."
 
 So the full output would be:
-'Cell' 0 0 1 1
-'Hallway' 1 0 3 1
-'Guard Post' 4 0 2 2
+"Cell" 0 0 1 1
+"Hallway" 1 0 3 1
+"Guard Post" 4 0 2 2
 -
 Dungeons are typically made up of cells connected to a main hallway that leads to a centralized guard post.
 As such, the dungeon level features a small 1x1 cell connected to a longer hallway that leads to the guard post.
